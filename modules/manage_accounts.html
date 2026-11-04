@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý tài khoản</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+    <main class="page-shell">
+        <header class="site-header">
+            <a class="brand" href="../">
+                <span class="brand-mark" aria-hidden="true">OJ</span>
+                <span>Online Judge</span>
+            </a>
+            <div class="button-row">
+                <a href="index.html">Tài khoản</a>
+                <a href="classroom_list.html">Lớp học</a>
+                <a href="problems.html">Kho bài tập</a>
+                <a href="submissions.html">Lịch sử bài nộp</a>
+                <button id="logout-button" class="secondary" type="button">Đăng xuất</button>
+            </div>
+        </header>
+        <div class="dashboard-header">
+            <div>
+                <h1>Quản lý tài khoản</h1>
+                <p class="page-subtitle">Quản lý vai trò và trạng thái quản trị viên.</p>
+            </div>
+        </div>
+        <p id="status-message" class="message" role="status">Đang kiểm tra quyền truy cập...</p>
+
+        <section class="card table-card">
+            <div class="table-scroll">
+                <table id="accounts-table" hidden>
+                    <thead>
+                        <tr>
+                            <th>Mã tài khoản</th>
+                            <th>Tên</th>
+                            <th>Email</th>
+                            <th>Vai trò</th>
+                            <th>Trạng thái admin</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody id="accounts-list"></tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+    <script type="module" src="../assets/js/manage_accounts.js?v=20261029b"></script>
+</body>
+</html>

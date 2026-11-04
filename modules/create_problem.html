@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tạo bài tập | Online Judge</title>
+    <link rel="stylesheet" href="../assets/css/styles.css?v=20261101k">
+</head>
+<body>
+    <main class="page-shell">
+        <header class="site-header">
+            <a class="brand" href="../">
+                <span class="brand-mark" aria-hidden="true">OJ</span>
+                <span>Online Judge</span>
+            </a>
+            <div class="button-row">
+                <a href="index.html">Tài khoản</a>
+                <a href="classroom_list.html">Lớp học</a>
+                <a href="problems.html">Kho bài tập</a>
+                <a href="submissions.html">Lịch sử bài nộp</a>
+                <button id="logout-button" class="secondary" type="button">Đăng xuất</button>
+            </div>
+        </header>
+
+        <section class="card dashboard-card">
+            <div class="dashboard-header">
+                <div>
+                    <p class="eyebrow">KHO BÀI TẬP CỦA BẠN</p>
+                    <h1 id="form-heading">Tạo bài tập</h1>
+                    <p id="form-subtitle" class="page-subtitle">Bài tập sẽ thuộc kho của bạn. Admin khác không thể chỉnh sửa bài này.</p>
+                </div>
+            </div>
+
+            <div class="problem-authoring-layout">
+            <form id="problem-form" class="stacked-form problem-authoring-form">
+                <h2>Nội dung bài tập</h2>
+                <p class="field-hint">Bao công thức trong <code>$ ... $</code> hoặc <code>\( ... \)</code> để hiển thị trong dòng; dùng <code>$$ ... $$</code> hoặc <code>\[ ... \]</code> cho công thức riêng dòng.</p>
+                <p class="field-hint">Gõ <code>\</code> trong ô mô tả, input, output hoặc giới hạn dữ liệu để hiện gợi ý lệnh phù hợp.</p>
+                <div id="latex-autocomplete" class="latex-autocomplete" role="listbox" aria-label="Gợi ý lệnh LaTeX" hidden></div>
+                <label>Tiêu đề<input name="problem_name" required maxlength="255"></label>
+                <label>Mô tả<textarea name="description" rows="7" placeholder="Ví dụ: Cho hai số nguyên dương \(a\) và \(b\). Hãy tính tổng của chúng."></textarea></label>
+                <div class="split-fields">
+                    <label>Định dạng input<textarea name="input_description" rows="5" placeholder="Một dòng chứa hai số nguyên \(a, b\)."></textarea></label>
+                    <label>Định dạng output<textarea name="output_description" rows="5" placeholder="In ra giá trị \(a+b\)."></textarea></label>
+                </div>
+                <label>Giới hạn dữ liệu<textarea name="data_constraints" rows="4" placeholder="Ví dụ: \(1 \le a,b \le 10^9\)."></textarea></label>
+                <div class="split-fields">
+                    <label>Giới hạn thời gian (giây)<input name="time_limit" type="number" min="1" max="10" value="1" required></label>
+                    <label>Giới hạn bộ nhớ (MB)<input name="memory_limit" type="number" min="64" max="1024" value="256" required></label>
+                </div>
+                <label>Quyền xem
+                    <select name="access_modifier" required>
+                        <option value="private">Private — chỉ trong lớp được thêm</option>
+                        <option value="public">Public — mọi người có thể luyện tập</option>
+                        <option value="hidden">Hidden — ẩn hoàn toàn, dùng cho contest</option>
+                    </select>
+                </label>
+                <p class="field-hint">Sau khi tạo, bạn có thể gắn bài vào một hoặc nhiều lớp từ trang quản lý lớp.</p>
+                <fieldset class="testcase-editor">
+                    <legend>Test case (tổng điểm nên bằng 100)</legend>
+                    <div id="testcase-list"></div>
+                    <button id="add-testcase" class="secondary" type="button">＋ Thêm test case</button>
+                </fieldset>
+                <div class="button-row">
+                    <button id="save-problem" type="submit">Tạo bài tập</button>
+                    <a class="button-link secondary" href="problems.html">Hủy</a>
+                </div>
+            </form>
+            <aside class="problem-preview-panel" aria-labelledby="problem-preview-heading">
+                <div class="problem-preview-toolbar">
+                    <div>
+                        <p class="eyebrow">XEM TRƯỚC</p>
+                        <h2 id="problem-preview-heading">Đề bài</h2>
+                    </div>
+                    <span class="preview-live-indicator"><span></span> Trực tiếp</span>
+                </div>
+                <article id="problem-preview" class="problem-statement-preview">
+                    <h1 id="preview-title">Tiêu đề bài tập</h1>
+                    <section id="preview-description-section" hidden>
+                        <h2>Mô tả</h2>
+                        <p id="preview-description" class="preview-content"></p>
+                    </section>
+                    <section id="preview-input-section" hidden>
+                        <h2>Input</h2>
+                        <p id="preview-input" class="preview-content"></p>
+                    </section>
+                    <section id="preview-output-section" hidden>
+                        <h2>Output</h2>
+                        <p id="preview-output" class="preview-content"></p>
+                    </section>
+                    <section id="preview-constraints-section" hidden>
+                        <h2>Giới hạn dữ liệu</h2>
+                        <p id="preview-constraints" class="preview-content"></p>
+                    </section>
+                    <section id="preview-limits-section" hidden>
+                        <h2>Giới hạn</h2>
+                        <p id="preview-limits"></p>
+                    </section>
+                </article>
+                <p id="math-renderer-message" class="field-hint preview-renderer-message">Đang tải bộ hiển thị công thức…</p>
+            </aside>
+            </div>
+            <p id="problem-message" class="message" role="status"></p>
+            <p id="page-message" class="message" role="alert"></p>
+        </section>
+    </main>
+    <script type="module" src="../assets/js/create_problem.js?v=20261102a"></script>
+</body>
+</html>

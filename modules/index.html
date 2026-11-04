@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Judge</title>
+    <link rel="stylesheet" href="../assets/css/styles.css?v=20261106a">
+</head>
+<body>
+    <main class="page-shell">
+        <header class="site-header">
+            <a class="brand" href="../">
+                <span class="brand-mark" aria-hidden="true">OJ</span>
+                <span>Online Judge</span>
+            </a>
+            <div class="button-row">
+                <a href="index.html">Tài khoản</a>
+                <a href="classroom_list.html">Lớp học</a>
+                <a href="problems.html">Kho bài tập</a>
+                <a href="submissions.html">Lịch sử bài nộp</a>
+                <a id="manage-accounts-link" href="manage_accounts.html" hidden>Quản lý tài khoản</a>
+                <a id="judge-admin-link" href="classroom_list.html?view=managed-classes" hidden>Quản lý lớp học</a>
+                <button id="logout-button" class="secondary" type="button">Đăng xuất</button>
+            </div>
+        </header>
+
+        <section class="account-quick-card" aria-labelledby="account-heading">
+            <div class="account-avatar" aria-hidden="true">OJ</div>
+            <div class="account-quick-info">
+                <div class="account-quick-identity">
+                    <h1 id="account-heading"><span id="account-name"></span></h1>
+                    <span id="account-role" class="account-role-pill"></span>
+                </div>
+                <p id="account-email" class="account-quick-email"></p>
+                <div class="account-quick-actions">
+                    <input id="account-name-input" type="text" minlength="3" maxlength="100" aria-label="Tên hiển thị" hidden>
+                    <button id="edit-name-button" class="secondary" type="button">Sửa tên</button>
+                    <button id="save-name-button" type="button" hidden>Lưu</button>
+                    <button id="cancel-name-button" class="secondary" type="button" hidden>Hủy</button>
+                    <details class="account-more">
+                        <summary>Thông tin thêm</summary>
+                        <dl class="account-details">
+                            <div><dt>ID tài khoản</dt><dd id="account-id"></dd></div>
+                            <div><dt>Mã tài khoản</dt><dd id="account-code"></dd></div>
+                            <div><dt>Ngày tạo</dt><dd><time id="account-created-at"></time></dd></div>
+                        </dl>
+                    </details>
+                </div>
+                <p id="profile-message" class="message" role="status"></p>
+                <p id="logout-error" class="message" role="alert"></p>
+            </div>
+        </section>
+
+        <nav class="dashboard-shortcuts" aria-label="Chức năng chính">
+            <a class="dashboard-shortcut" href="classroom_list.html">
+                <span class="dashboard-shortcut-icon" aria-hidden="true">▤</span>
+                <span><strong>Lớp học</strong><small>Quản lý lớp hoặc mở lớp đang tham gia</small></span>
+                <span class="dashboard-shortcut-arrow" aria-hidden="true">→</span>
+            </a>
+            <a class="dashboard-shortcut" href="problems.html">
+                <span class="dashboard-shortcut-icon" aria-hidden="true">⌕</span>
+                <span><strong>Kho bài tập</strong><small>Xem bài public và luyện tập</small></span>
+                <span class="dashboard-shortcut-arrow" aria-hidden="true">→</span>
+            </a>
+            <a class="dashboard-shortcut" href="submissions.html">
+                <span class="dashboard-shortcut-icon" aria-hidden="true">✓</span>
+                <span><strong>Lịch sử bài nộp</strong><small>Tìm và theo dõi kết quả bài nộp</small></span>
+                <span class="dashboard-shortcut-arrow" aria-hidden="true">→</span>
+            </a>
+        </nav>
+        <section class="card dashboard-start" aria-labelledby="dashboard-start-heading">
+            <div class="dashboard-start-heading">
+                <p class="eyebrow">BẮT ĐẦU THẬT ĐƠN GIẢN</p>
+                <h2 id="dashboard-start-heading">Mỗi lần thử là một bước tiến</h2>
+                <p class="page-subtitle">Chọn bài phù hợp, gửi lời giải và xem kết quả chấm.</p>
+            </div>
+            <ol class="dashboard-start-steps">
+                <li><span>1</span><div><strong>Chọn thử thách</strong><small>Tìm theo tên bài tập.</small></div></li>
+                <li><span>2</span><div><strong>Viết lời giải</strong><small>Chọn ngôn ngữ và gửi code.</small></div></li>
+                <li><span>3</span><div><strong>Xem kết quả</strong><small>Nhận verdict và điểm sau khi chấm.</small></div></li>
+            </ol>
+            <a class="button-link" href="problems.html">Khám phá bài tập <span aria-hidden="true">→</span></a>
+        </section>
+        <section id="admin-problem-tools" class="card dashboard-card admin-problem-shortcut" hidden aria-labelledby="problem-tools-heading">
+            <div class="admin-problem-shortcut-copy">
+                <p class="eyebrow">DÀNH CHO QUẢN TRỊ VIÊN</p>
+                <h2 id="problem-tools-heading">Kho bài tập của bạn</h2>
+                <p class="page-subtitle">Tạo bài, quản lý bài đã tạo và chọn quyền public/private.</p>
+            </div>
+            <div class="button-row">
+                <a class="button-link" href="create_problem.html">＋ Tạo bài tập</a>
+                <a class="button-link secondary" href="problems.html">Mở kho bài tập</a>
+            </div>
+        </section>
+
+        <section class="card dashboard-card server-history-card" aria-labelledby="server-history-heading">
+            <div class="dashboard-header">
+                <div>
+                    <h2 id="server-history-heading">Bài nộp gần đây</h2>
+                    <p class="page-subtitle">Theo dõi kết quả mới nhất; chỉ bạn xem được mã nguồn của mình.</p>
+                </div>
+                <a href="submissions.html">Xem toàn bộ</a>
+            </div>
+            <div id="server-submission-history" class="entity-list server-submission-list"></div>
+            <button id="server-submission-more" class="secondary" type="button" hidden>Tải bài nộp cũ hơn</button>
+            <p id="server-submission-message" class="message" role="alert"></p>
+        </section>
+    </main>
+    <script type="module" src="../assets/js/account.js?v=20261106a"></script>
+</body>
+</html>

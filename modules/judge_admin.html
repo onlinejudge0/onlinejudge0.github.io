@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Judge Admin</title>
+    <link rel="stylesheet" href="../assets/css/styles.css?v=20261102d">
+</head>
+<body class="page-with-sidebar">
+    <main class="page-shell app-shell">
+        <header class="site-header topbar">
+            <a class="brand" href="index.html">
+                <span class="brand-mark" aria-hidden="true">OJ</span>
+                <span>Online Judge</span>
+            </a>
+            <div class="button-row">
+                <a href="index.html">Tài khoản</a>
+                <a href="classroom_list.html">Lớp học</a>
+                <a href="problems.html">Kho bài tập</a>
+                <a href="create_problem.html">Tạo bài tập</a>
+                <a href="submissions.html">Lịch sử bài nộp</a>
+                <button id="logout-button" class="secondary" type="button">Đăng xuất</button>
+            </div>
+        </header>
+
+        <div class="workspace-layout">
+            <aside class="sidebar-panel" aria-label="Sidebar quản lý contest và bài tập">
+                <div class="sidebar-header">
+                    <span class="brand-mark" aria-hidden="true">OJ</span>
+                    <div>
+                        <strong>Quản trị</strong>
+                        <small>Problem & contest</small>
+                    </div>
+                </div>
+
+                <nav class="sidebar-nav" aria-label="Điều hướng quản trị">
+                    <a class="nav-item active" href="#problem-form">Bài tập</a>
+                    <a class="nav-item" href="#class-form">Lớp học</a>
+                    <a class="nav-item" href="#contest-form">Contest</a>
+                    <a class="nav-item" href="#submission-management">Bài nộp</a>
+                    <a class="nav-item" href="#class-detail-form">Chi tiết</a>
+                </nav>
+
+                <div class="sidebar-footer">
+                    <button class="secondary" type="button" onclick="location.href='index.html'">Tài khoản</button>
+                </div>
+            </aside>
+
+            <section class="card content-panel">
+                <div class="dashboard-header">
+                    <div>
+                        <h1>Quản lý bài, lớp học và contest</h1>
+                        <p class="page-subtitle">Tạo problem công khai/riêng tư, gán vào lớp và contest.</p>
+                    </div>
+                </div>
+
+            <div class="stacked-panel-grid">
+                <div class="panel-block">
+                    <h2>Thêm bài tập</h2>
+                    <form id="problem-form" class="stacked-form">
+                        <label>Tiêu đề<input name="problem_name" required></label>
+                        <label>Mô tả<textarea name="description" rows="3"></textarea></label>
+                        <label>Input<textarea name="input_description" rows="2"></textarea></label>
+                        <label>Output<textarea name="output_description" rows="2"></textarea></label>
+                        <fieldset class="testcase-editor">
+                            <legend>Test cases</legend>
+                            <div id="problem-testcases"></div>
+                            <button class="secondary add-testcase" type="button" data-target="problem-testcases">Thêm test case</button>
+                        </fieldset>
+                        <div class="split-fields">
+                            <label>Time limit<input name="time_limit" type="number" min="1" max="10" value="1" required></label>
+                            <label>Memory limit<input name="memory_limit" type="number" min="64" max="1024" value="256" required></label>
+                        </div>
+                        <label>Quyền xem
+                            <select name="access_modifier">
+                                <option value="private">Private</option>
+                                <option value="public">Public</option>
+                                <option value="hidden">Hidden</option>
+                            </select>
+                        </label>
+                        <button type="submit">Tạo problem</button>
+                    </form>
+                    <p id="problem-message" class="message" role="status"></p>
+                    <ul id="problem-list" class="entity-list"></ul>
+
+                    <h3>Sửa bài tập</h3>
+                    <form id="problem-edit-form" class="stacked-form">
+                        <label>Problem ID<input name="problem_id" type="number" min="1" required></label>
+                        <label>Tiêu đề<input name="problem_name" required></label>
+                        <label>Mô tả<textarea name="description" rows="3"></textarea></label>
+                        <label>Input<textarea name="input_description" rows="2"></textarea></label>
+                        <label>Output<textarea name="output_description" rows="2"></textarea></label>
+                        <fieldset class="testcase-editor">
+                            <legend>Thay thế test cases (không bắt buộc)</legend>
+                            <div id="problem-edit-testcases"></div>
+                            <button class="secondary add-testcase" type="button" data-target="problem-edit-testcases">Thêm test case</button>
+                        </fieldset>
+                        <div class="split-fields">
+                            <label>Time limit<input name="time_limit" type="number" min="1" max="10" value="1" required></label>
+                            <label>Memory limit<input name="memory_limit" type="number" min="64" max="1024" value="256" required></label>
+                        </div>
+                        <label>Quyền xem
+                            <select name="access_modifier">
+                                <option value="private">Private</option>
+                                <option value="public">Public</option>
+                                <option value="hidden">Hidden</option>
+                            </select>
+                        </label>
+                        <button type="submit">Cập nhật problem</button>
+                    </form>
+                    <p id="problem-edit-message" class="message" role="status"></p>
+                </div>
+
+                <div class="panel-block">
+                    <h2>Thêm lớp học</h2>
+                    <form id="class-form" class="stacked-form">
+                        <label>Tên lớp<input name="class_name" required></label>
+                        <button type="submit">Tạo lớp</button>
+                    </form>
+                    <p id="class-message" class="message" role="status"></p>
+                    <ul id="class-list" class="entity-list"></ul>
+                </div>
+
+                <div class="panel-block">
+                    <h2>Thêm contest</h2>
+                    <form id="contest-form" class="stacked-form">
+                        <label>Tên contest<input name="contest_name" required></label>
+                        <label>Mô tả<textarea name="description" rows="2"></textarea></label>
+                        <div class="split-fields">
+                            <label>Bắt đầu<input name="start_time" type="datetime-local" required></label>
+                            <label>Kết thúc<input name="end_time" type="datetime-local" required></label>
+                        </div>
+                        <button type="submit">Tạo contest</button>
+                    </form>
+                    <p id="contest-message" class="message" role="status"></p>
+                    <ul id="contest-list" class="entity-list"></ul>
+                </div>
+                <div class="panel-block" id="submission-management" hidden>
+                    <h2>Quản lý bài nộp</h2>
+                    <p class="field-hint">SUPER_ADMIN có thể xóa bài nộp riêng lẻ. Danh sách hiển thị tối đa 500 bài gần nhất.</p>
+                    <form id="submission-search-form" class="stacked-form">
+                        <label>Tìm bài nộp theo ID<input name="submission_id" type="number" min="1"></label>
+                        <button type="submit">Tìm</button>
+                    </form>
+                    <p id="submission-message" class="message" role="status"></p>
+                    <ul id="submission-list" class="entity-list"></ul>
+                </div>
+            </div>
+
+            <div class="stacked-panel-grid">
+                <div class="panel-block">
+                    <h2>Gắn bài vào lớp</h2>
+                    <form id="class-problem-form" class="stacked-form">
+                        <label>Class ID<input name="class_id" type="number" min="1" required></label>
+                        <label>Problem ID<input name="problem_id" type="number" min="1" required></label>
+                        <label><input name="is_required" type="checkbox"> Bài bắt buộc</label>
+                        <button type="submit">Gắn bài vào lớp</button>
+                    </form>
+                    <p id="class-problem-message" class="message" role="status"></p>
+                </div>
+
+                <div class="panel-block">
+                    <h2>Gắn contest vào lớp</h2>
+                    <form id="class-contest-form" class="stacked-form">
+                        <label>Class ID<input name="class_id" type="number" min="1" required></label>
+                        <label>Contest ID<input name="contest_id" type="number" min="1" required></label>
+                        <button type="submit">Gắn contest vào lớp</button>
+                    </form>
+                    <p id="class-contest-message" class="message" role="status"></p>
+                </div>
+
+                <div class="panel-block">
+                    <h2>Quản lý học viên</h2>
+                    <form id="class-student-form" class="stacked-form">
+                        <label>Class ID<input name="class_id" type="number" min="1" required></label>
+                        <label>Account ID học viên<input name="account_id" type="number" min="1" required></label>
+                        <button type="submit">Thêm học viên vào lớp</button>
+                    </form>
+                    <p id="class-student-message" class="message" role="status"></p>
+                    <p class="field-hint">Dùng Account ID của tài khoản học viên. Danh sách thành viên hiển thị trong phần chi tiết lớp.</p>
+                </div>
+
+                <div class="panel-block">
+                    <h2>Gắn bài vào contest</h2>
+                    <form id="contest-problem-form" class="stacked-form">
+                        <label>Contest ID<input name="contest_id" type="number" min="1" required></label>
+                        <label>Problem ID<input name="problem_id" type="number" min="1" required></label>
+                        <label>Thứ tự bài<input name="problem_order" type="number" min="1" value="1"></label>
+                        <button type="submit">Thêm bài vào contest</button>
+                    </form>
+                    <p id="contest-problem-message" class="message" role="status"></p>
+                </div>
+            </div>
+
+            <div class="stacked-panel-grid">
+                <div class="panel-block">
+                    <h2>Chi tiết lớp</h2>
+                    <form id="class-detail-form" class="stacked-form">
+                        <label>Class ID<input name="class_id" type="number" min="1" required></label>
+                        <button type="submit">Xem chi tiết</button>
+                    </form>
+                    <p id="class-detail-message" class="message" role="status"></p>
+                    <div id="class-detail-output" class="entity-list"></div>
+                </div>
+
+                <div class="panel-block">
+                    <h2>Chi tiết contest</h2>
+                    <form id="contest-detail-form" class="stacked-form">
+                        <label>Contest ID<input name="contest_id" type="number" min="1" required></label>
+                        <button type="submit">Xem chi tiết</button>
+                    </form>
+                    <p id="contest-detail-message" class="message" role="status"></p>
+                    <div id="contest-detail-output" class="entity-list"></div>
+                </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <script type="module" src="../assets/js/judge_admin.js?v=20261101c"></script>
+</body>
+</html>

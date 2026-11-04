@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kho bài tập | Online Judge</title>
+    <link rel="stylesheet" href="../assets/css/styles.css?v=20261106a">
+</head>
+<body>
+    <main class="page-shell">
+        <header class="site-header">
+            <a class="brand" href="../">
+                <span class="brand-mark" aria-hidden="true">OJ</span>
+                <span>Online Judge</span>
+            </a>
+            <div class="button-row">
+                <a href="index.html">Tài khoản</a>
+                <a href="classroom_list.html">Lớp học</a>
+                <a href="problems.html">Kho bài tập</a>
+                <a href="submissions.html">Lịch sử bài nộp</a>
+                <button id="logout-button" class="secondary" type="button">Đăng xuất</button>
+            </div>
+        </header>
+
+        <section class="card dashboard-card problem-bank-page">
+            <div class="problem-bank-heading">
+                <div>
+                    <p class="eyebrow">LUYỆN TẬP</p>
+                    <h1>Kho bài tập</h1>
+                    <p class="page-subtitle">Chọn bài tập để bắt đầu luyện code.</p>
+                </div>
+                <a id="create-problem-main-link" class="button-link" href="create_problem.html" hidden>＋ Tạo bài tập</a>
+            </div>
+            <label class="problem-bank-search">
+                <span class="problem-search-icon" aria-hidden="true"></span>
+                <input id="problem-filter" type="search" maxlength="100" placeholder="Tìm theo tên bài tập..." autocomplete="off" aria-label="Tìm theo tên bài tập" disabled>
+            </label>
+            <p id="problem-search-status" class="problem-search-status" aria-live="polite"></p>
+            <div id="problem-bank-picker-layout" class="problem-bank-picker-layout">
+                <section id="owned-problems-panel" class="problem-picker panel-block" aria-label="Bài tập của tôi" hidden>
+                    <div class="problem-picker-header">
+                        <div class="problem-picker-heading">
+                            <span class="problem-section-number">01</span>
+                            <h2>Bài tập của tôi</h2>
+                            <span id="owned-problem-list-count" class="problem-count-pill">Đang tải</span>
+                        </div>
+                    </div>
+                    <p class="problem-panel-hint">Các bài bạn đã tạo và đang quản lý.</p>
+                    <div id="owned-problem-list" class="problem-picker-list"></div>
+                </section>
+                <section class="problem-picker panel-block" aria-label="Bài tập public">
+                    <div class="problem-picker-header">
+                        <div class="problem-picker-heading">
+                            <span class="problem-section-number">02</span>
+                            <h2>Bài tập public</h2>
+                            <span id="public-problem-list-count" class="problem-count-pill">Đang tải</span>
+                        </div>
+                    </div>
+                    <p class="problem-panel-hint">Khám phá các bài tập có sẵn để luyện tập.</p>
+                    <div id="public-problem-list" class="problem-picker-list"></div>
+                </section>
+            </div>
+            <p id="page-message" class="message" role="alert"></p>
+        </section>
+    </main>
+    <script type="module" src="../assets/js/problem_bank.js?v=20261106a"></script>
+</body>
+</html>

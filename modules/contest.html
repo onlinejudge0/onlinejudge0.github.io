@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuộc thi | Online Judge</title>
+    <link rel="stylesheet" href="../assets/css/styles.css?v=20261102h">
+</head>
+<body>
+    <main class="page-shell">
+        <header class="site-header">
+            <a class="brand" href="index.html">
+                <span class="brand-mark" aria-hidden="true">OJ</span>
+                <span>Online Judge</span>
+            </a>
+            <nav class="button-row" aria-label="Điều hướng chính">
+                <a id="back-to-class" href="classroom_list.html">Quay lại lớp học</a>
+                <a href="index.html">Tài khoản</a>
+                <a href="classroom_list.html">Lớp học</a>
+                <a href="submissions.html">Lịch sử bài nộp</a>
+                <button id="logout-button" class="secondary" type="button">Đăng xuất</button>
+            </nav>
+        </header>
+
+        <section class="card dashboard-card contest-page">
+            <div class="contest-page-heading">
+                <div>
+                    <p class="eyebrow">CUỘC THI TRONG LỚP</p>
+                    <h1 id="contest-title">Đang tải cuộc thi...</h1>
+                    <p id="contest-description" class="page-subtitle"></p>
+                    <p id="contest-schedule" class="field-hint"></p>
+                </div>
+                <div class="contest-countdown-card" aria-live="polite">
+                    <span id="contest-status" class="status-pill">ĐANG DIỄN RA</span>
+                    <strong id="contest-countdown">--:--:--</strong>
+                    <span>Còn lại</span>
+                </div>
+            </div>
+            <p id="contest-message" class="message" role="status" aria-live="polite"></p>
+
+            <nav class="contest-tabs" role="tablist" aria-label="Các mục cuộc thi">
+                <button id="contest-main-tab" class="contest-tab active" type="button" role="tab" aria-selected="true" aria-controls="contest-main-panel" data-contest-tab="contest-main-panel">Cuộc thi</button>
+                <button id="contest-standings-tab" class="contest-tab" type="button" role="tab" aria-selected="false" aria-controls="contest-standings-panel" data-contest-tab="contest-standings-panel" tabindex="-1">Bảng xếp hạng</button>
+                <button id="contest-history-tab" class="contest-tab" type="button" role="tab" aria-selected="false" aria-controls="contest-history-panel" data-contest-tab="contest-history-panel" tabindex="-1">Lịch sử nộp</button>
+            </nav>
+
+            <section id="contest-main-panel" class="contest-tab-panel contest-work-area" role="tabpanel" aria-labelledby="contest-main-tab" tabindex="0">
+                <section class="contest-panel contest-statement-panel">
+                    <h2>Đề bài</h2>
+                    <nav id="contest-problem-picker" class="contest-problem-picker" aria-label="Chọn bài thi"></nav>
+                    <article id="contest-problem-statement" class="problem-statement-preview" hidden>
+                        <p id="statement-problem-order" class="class-card-kicker"></p>
+                        <h3 id="statement-title"></h3>
+                        <section id="statement-description-section" hidden>
+                            <h4>Mô tả</h4>
+                            <p id="statement-description" class="preview-content"></p>
+                        </section>
+                        <section id="statement-input-section" hidden>
+                            <h4>Input</h4>
+                            <p id="statement-input" class="preview-content"></p>
+                        </section>
+                        <section id="statement-output-section" hidden>
+                            <h4>Output</h4>
+                            <p id="statement-output" class="preview-content"></p>
+                        </section>
+                        <section id="statement-constraints-section" hidden>
+                            <h4>Giới hạn dữ liệu</h4>
+                            <p id="statement-constraints" class="preview-content"></p>
+                        </section>
+                        <p id="statement-limits" class="field-hint"></p>
+                    </article>
+                </section>
+
+                <section class="contest-panel contest-submit-panel">
+                    <h2>Nộp lời giải</h2>
+                    <form id="contest-submit-form" class="stacked-form">
+                        <label>Ngôn ngữ lập trình
+                            <select id="solution-language" name="language_id" required></select>
+                        </label>
+                        <label>Mã nguồn
+                            <textarea name="source_code" rows="18" required maxlength="65536" spellcheck="false" placeholder="Viết lời giải cho bài đang chọn..."></textarea>
+                        </label>
+                        <button id="submit-solution" type="submit" disabled>Nộp và chấm bài</button>
+                    </form>
+                    <p id="submission-result" class="message" role="status" aria-live="polite"></p>
+                </section>
+            </section>
+            <p id="contest-view-only-note" class="field-hint" hidden>
+                Bạn đang xem cuộc thi với quyền quản lý lớp. Chỉ thành viên lớp mới có thể nộp bài.
+            </p>
+
+            <section id="contest-standings-panel" class="contest-tab-panel contest-panel" role="tabpanel" aria-labelledby="contest-standings-tab" tabindex="0" hidden>
+                    <div class="contest-panel-heading">
+                        <div>
+                            <h2>Bảng xếp hạng</h2>
+                            <p id="contest-participant-count" class="field-hint">0 thí sinh</p>
+                        </div>
+                        <span class="live-indicator">Cập nhật trực tiếp</span>
+                    </div>
+                    <div id="contest-standings" class="contest-standings"></div>
+            </section>
+            <section id="contest-history-panel" class="contest-tab-panel contest-panel" role="tabpanel" aria-labelledby="contest-history-tab" tabindex="0" hidden>
+                    <div class="contest-panel-heading">
+                        <div>
+                            <h2>Lịch sử nộp bài</h2>
+                            <p class="field-hint">Chỉ bài nộp của cuộc thi này.</p>
+                        </div>
+                        <span class="live-indicator">Cập nhật trực tiếp</span>
+                    </div>
+                    <div id="contest-submission-history" class="entity-list"></div>
+                    <button id="load-older-submissions" class="secondary" type="button" hidden>Tải bài nộp cũ hơn</button>
+            </section>
+        </section>
+    </main>
+    <script type="module" src="../assets/js/contest.js?v=20261102h"></script>
+</body>
+</html>

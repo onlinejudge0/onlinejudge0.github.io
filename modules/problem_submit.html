@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài tập | Online Judge</title>
+    <link rel="stylesheet" href="../assets/css/styles.css?v=20261103b">
+</head>
+<body>
+    <main class="page-shell">
+        <header class="site-header">
+            <a class="brand" href="../">
+                <span class="brand-mark" aria-hidden="true">OJ</span>
+                <span>Online Judge</span>
+            </a>
+            <div class="button-row">
+                <a id="back-to-class" href="classroom_list.html" hidden>Quay lại lớp</a>
+                <a href="index.html">Tài khoản</a>
+                <a href="classroom_list.html">Lớp học</a>
+                <a href="problems.html">Kho bài tập</a>
+                <a id="problem-history-link" href="submissions.html" hidden>Lịch sử bài nộp</a>
+                <button id="logout-button" class="secondary" type="button">Đăng xuất</button>
+            </div>
+        </header>
+
+        <section class="card dashboard-card">
+            <div class="problem-submit-toolbar">
+                <div>
+                    <p class="eyebrow">LUYỆN TẬP</p>
+                    <p class="page-subtitle">Đọc đề bên trái, viết và nộp lời giải bên phải.</p>
+                </div>
+            </div>
+            <div class="problem-submit-layout">
+                <article id="problem-statement" class="panel-block problem-statement-preview" hidden>
+                    <p class="eyebrow">ĐỀ BÀI</p>
+                    <h1 id="statement-title"></h1>
+                    <section id="statement-description-section" hidden>
+                        <h2>Mô tả</h2>
+                        <p id="statement-description" class="preview-content"></p>
+                    </section>
+                    <section id="statement-input-section" hidden>
+                        <h2>Input</h2>
+                        <p id="statement-input" class="preview-content"></p>
+                    </section>
+                    <section id="statement-output-section" hidden>
+                        <h2>Output</h2>
+                        <p id="statement-output" class="preview-content"></p>
+                    </section>
+                    <section id="statement-constraints-section" hidden>
+                        <h2>Giới hạn dữ liệu</h2>
+                        <p id="statement-constraints" class="preview-content"></p>
+                    </section>
+                    <section id="statement-limits-section" hidden>
+                        <h2>Giới hạn chấm</h2>
+                        <p id="statement-limits"></p>
+                    </section>
+                </article>
+                <form id="solution-form" class="panel-block stacked-form problem-submit-form">
+                    <div>
+                        <p class="eyebrow">NỘP BÀI</p>
+                        <h2 id="solution-heading">Đang tải bài tập...</h2>
+                    </div>
+                    <label>Ngôn ngữ lập trình
+                        <select id="solution-language" name="language_id" required disabled></select>
+                    </label>
+                    <label>Mã nguồn
+                        <textarea name="source_code" rows="18" required maxlength="65536" spellcheck="false" placeholder="Nhập mã nguồn..." disabled></textarea>
+                    </label>
+                    <button type="submit" disabled>Nộp và chấm bài</button>
+                    <p id="submit-access-note" class="field-hint" hidden></p>
+                    <p id="submission-result" class="message" role="status" aria-live="polite"></p>
+                </form>
+            </div>
+            <p id="page-message" class="message" role="alert"></p>
+        </section>
+    </main>
+    <script type="module" src="../assets/js/problem_submit.js?v=20261103b"></script>
+</body>
+</html>

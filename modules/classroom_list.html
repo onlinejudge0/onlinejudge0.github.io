@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lớp học | Online Judge</title>
+    <link rel="stylesheet" href="../assets/css/styles.css?v=20261102d">
+</head>
+<body class="page-with-sidebar">
+    <main class="page-shell app-shell">
+        <header class="site-header topbar">
+            <a class="brand" href="index.html">
+                <span class="brand-mark" aria-hidden="true">OJ</span>
+                <span>Online Judge</span>
+            </a>
+            <div class="button-row">
+                <a href="index.html">Tài khoản</a>
+                <a href="classroom_list.html">Lớp học</a>
+                <a href="problems.html">Kho bài tập</a>
+                <a href="submissions.html">Lịch sử bài nộp</a>
+                <a id="advanced-admin-link" href="judge_admin.html" hidden>Contest & công cụ nâng cao</a>
+                <button id="logout-button" class="secondary" type="button">Đăng xuất</button>
+            </div>
+        </header>
+
+        <div class="workspace-layout">
+            <aside class="sidebar-panel" aria-label="Sidebar quản lý lớp học">
+                <div class="sidebar-header">
+                    <span class="brand-mark" aria-hidden="true">OJ</span>
+                    <div>
+                        <strong id="sidebar-title">Quản lý lớp</strong>
+                        <small>Học tập & thi đấu</small>
+                    </div>
+                </div>
+
+                <nav class="sidebar-nav" aria-label="Điều hướng trang lớp học">
+                    <a class="nav-item active" href="#page-heading">Tổng quan</a>
+                    <a id="admin-home-nav" class="nav-item" href="classroom_list.html?view=managed-classes" hidden>Quản lý lớp</a>
+                    <a id="student-home-nav" class="nav-item" href="classroom_list.html?view=my-classes">Lớp của tôi</a>
+                </nav>
+
+                <div class="sidebar-footer">
+                    <button class="secondary" type="button" onclick="location.href='index.html'">Về tài khoản</button>
+                </div>
+            </aside>
+
+            <section class="card content-panel">
+                <div class="dashboard-header">
+                    <div>
+                        <p class="eyebrow">KHÔNG GIAN HỌC TẬP</p>
+                        <h1 id="page-heading">Lớp học</h1>
+                        <p id="page-subtitle" class="page-subtitle">Quản lý lớp học và theo dõi nội dung được chia sẻ với bạn.</p>
+                    </div>
+                </div>
+
+                <section id="admin-home" hidden>
+                    <div class="classroom-home-layout">
+                        <div class="classroom-list-panel">
+                            <div class="classroom-section-heading">
+                                <div>
+                                    <p class="eyebrow">KHÔNG GIAN CỦA BẠN</p>
+                                    <h2>Quản lý lớp học</h2>
+                                    <p class="page-subtitle">Tạo lớp và quản lý thành viên, bài tập, cuộc thi tại đây.</p>
+                                </div>
+                                <button id="show-create-class" type="button">Tạo lớp học</button>
+                            </div>
+                            <form id="create-class-form" class="inline-create-form" hidden>
+                                <label for="new-class-name">Tên lớp học</label>
+                                <input id="new-class-name" name="class_name" maxlength="300" required placeholder="Ví dụ: Lập trình căn bản">
+                                <button type="submit">Tạo lớp</button>
+                                <button id="cancel-create-class" class="secondary" type="button">Hủy</button>
+                            </form>
+                            <p id="create-class-message" class="message" role="status"></p>
+                            <div id="managed-class-list" class="class-card-grid"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="student-home" hidden>
+                    <div class="classroom-home-layout">
+                        <div class="classroom-list-panel">
+                            <section class="classroom-home-section" aria-labelledby="my-classes-heading">
+                                <div class="classroom-section-heading">
+                                    <div>
+                                        <p class="eyebrow">KHÔNG GIAN HỌC TẬP</p>
+                                        <h2 id="my-classes-heading">Lớp của tôi</h2>
+                                        <p class="page-subtitle">Mở lớp để xem bài tập và cuộc thi được giao.</p>
+                                    </div>
+                                </div>
+                                <div id="my-class-list" class="class-card-grid"></div>
+                            </section>
+                            <section class="classroom-home-section discover-section" aria-labelledby="discover-classes-heading">
+                                <div class="classroom-section-heading">
+                                    <div>
+                                        <p class="eyebrow">KHÁM PHÁ</p>
+                                        <h2 id="discover-classes-heading">Tìm lớp học</h2>
+                                        <p class="page-subtitle">Gửi yêu cầu tham gia; chủ lớp sẽ duyệt trước khi bạn xem nội dung.</p>
+                                    </div>
+                                </div>
+                                <div id="available-class-list" class="class-card-grid"></div>
+                            </section>
+                        </div>
+                    </div>
+                </section>
+
+                <p id="page-message" class="message" role="alert"></p>
+            </section>
+        </div>
+    </main>
+
+    <script type="module" src="../assets/js/classroom_list.js?v=20261102e"></script>
+</body>
+</html>

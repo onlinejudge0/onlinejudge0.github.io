@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng kí</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+    <main class="auth-layout">
+        <section class="card auth-card">
+            <a class="brand" href="../">
+                <span class="brand-mark" aria-hidden="true">OJ</span>
+                <span>Online Judge</span>
+            </a>
+            <h1>Tạo tài khoản mới</h1>
+            <p class="page-subtitle">Điền thông tin bên dưới để bắt đầu tham gia.</p>
+
+            <form id="register-form" class="form-grid">
+                <div class="field">
+                    <label for="account-name">Tên tài khoản</label>
+                    <input type="text" id="account-name" name="account_name" minlength="3" maxlength="100" autocomplete="name" placeholder="Tên hiển thị" required>
+                </div>
+
+                <div class="field">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" autocomplete="email" placeholder="you@example.com" required>
+                </div>
+
+                <div class="field">
+                    <label for="password">Mật khẩu</label>
+                    <input type="password" id="password" name="password" maxlength="128" autocomplete="new-password" placeholder="Ít nhất 8 ký tự" required>
+                    <small class="field-hint">Mật khẩu phải có ít nhất 8 ký tự, có chữ và số, 1 ký tự đặc biệt và 1 chữ cái in hoa.</small>
+                </div>
+
+                <div class="field">
+                    <label for="confirm-password">Nhập lại mật khẩu</label>
+                    <input type="password" id="confirm-password" name="confirm_password" maxlength="128" autocomplete="new-password" placeholder="Nhập lại mật khẩu" required>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit">Tạo tài khoản</button>
+                    <button type="button" class="secondary" id="login-button">Đăng nhập</button>
+                </div>
+            </form>
+
+            <p id="status-message" class="message" role="status"></p>
+        </section>
+    </main>
+    <script type="module" src="../assets/js/register.js?v=20261029b"></script>
+</body>
+</html>
