@@ -1,4 +1,4 @@
-import { apiFetch, readResponse } from "./api.js?v=20261029a";
+import { apiFetch, readResponse } from "./api.js?v=20261104b";
 
 const publicList = document.getElementById("public-problem-list");
 const ownedList = document.getElementById("owned-problem-list");

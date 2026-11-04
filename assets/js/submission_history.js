@@ -1,4 +1,4 @@
-import { apiFetch, readResponse } from "./api.js?v=20261029a";
+import { apiFetch, readResponse } from "./api.js?v=20261104b";
 
 function appendText(parent, tagName, text, className = "") {
     const element = document.createElement(tagName);

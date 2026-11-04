@@ -1,4 +1,4 @@
-import { apiFetch, readResponse, requireAccountAccess } from "./api.js?v=20261029a";
+import { apiFetch, readResponse, requireAccountAccess } from "./api.js?v=20261104b";
 
 const statusMessage = document.getElementById("status-message");
 const accountsTable = document.getElementById("accounts-table");

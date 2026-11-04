@@ -65,7 +65,9 @@ export async function requireAccountAccess({
 
 const configuredApiBaseUrl = resolveApiBaseUrl();
 const FORWARDED_API_STORAGE_KEY = "online-judge-api-base-url";
+const SESSION_STORAGE_KEY = "online-judge-session-id";
 const localHostname = window.location.hostname;
+const usesSessionHeader = localHostname === "onlinejudge0.github.io";
 const savedApiBaseUrl = sessionStorage.getItem(FORWARDED_API_STORAGE_KEY);
 const savedApiUrlIsValid =
     (localHostname === "localhost" || localHostname === "127.0.0.1") &&
@@ -114,15 +116,36 @@ async function discoverForwardedApi() {
 }
 
 function fetchFromApi(path, options) {
+    const headers = new Headers(options.headers);
+    if (usesSessionHeader) {
+        const sessionId = sessionStorage.getItem(SESSION_STORAGE_KEY);
+        if (sessionId) {
+            headers.set("X-Session-ID", sessionId);
+        }
+    }
+
     return fetch(`${apiBaseUrl}${path}`, {
         ...options,
-        credentials: options.credentials ?? "include"
+        headers,
+        credentials: options.credentials ?? (usesSessionHeader ? "omit" : "include")
     });
 }
 
 export async function apiFetch(path, options = {}) {
     try {
-        return await fetchFromApi(path, options);
+        const response = await fetchFromApi(path, options);
+        if (usesSessionHeader && path === "/auth/login" && response.ok) {
+            const payload = await response.clone().json();
+            if (typeof payload.session_id !== "string" || !payload.session_id) {
+                throw new Error("Login response did not include a valid session ID.");
+            }
+            sessionStorage.setItem(SESSION_STORAGE_KEY, payload.session_id);
+        } else if (usesSessionHeader && path === "/auth/logout" && response.ok) {
+            sessionStorage.removeItem(SESSION_STORAGE_KEY);
+        } else if (usesSessionHeader && response.status === 401) {
+            sessionStorage.removeItem(SESSION_STORAGE_KEY);
+        }
+        return response;
     } catch (error) {
         if (localHostname !== "localhost" && localHostname !== "127.0.0.1") {
             throw error;

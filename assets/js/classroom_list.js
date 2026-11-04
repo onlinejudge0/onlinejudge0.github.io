@@ -1,4 +1,4 @@
-import { apiFetch, readResponse, requireAccountAccess } from "./api.js?v=20261029a";
+import { apiFetch, readResponse, requireAccountAccess } from "./api.js?v=20261104b";
 
 const pageMessage = document.getElementById("page-message");
 const adminHome = document.getElementById("admin-home");

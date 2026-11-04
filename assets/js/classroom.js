@@ -1,4 +1,4 @@
-import { apiFetch, readResponse, requireAccountAccess } from "./api.js?v=20261029a";
+import { apiFetch, readResponse, requireAccountAccess } from "./api.js?v=20261104b";
 import { typesetMath } from "./latex.js?v=20261101b";
 import { renderSubmissionHistory } from "./submission_history.js?v=20261102a";
 

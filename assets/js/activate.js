@@ -1,4 +1,4 @@
-import { apiFetch, readResponse } from "./api.js?v=20261029a";
+import { apiFetch, readResponse } from "./api.js?v=20261104b";
 
 const form = document.getElementById("activate-form");
 const statusMessage = document.getElementById("status-message");

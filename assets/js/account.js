@@ -1,4 +1,4 @@
-import { apiFetch, readResponse } from "./api.js?v=20261029a";
+import { apiFetch, readResponse } from "./api.js?v=20261104b";
 import { renderSubmissionHistory } from "./submission_history.js?v=20261102a";
 
 const logoutButton = document.getElementById("logout-button");
